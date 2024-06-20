@@ -1,0 +1,23 @@
+spring:
+  profiles.active: dev
+  datasource:
+    url:  jdbc:mysql://localhost:3306/fa_chat?characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  # 设置 Mybatis 的 xml 保存路径
+  configuration: # 配置打印 MyBatis 执行的 SQL
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+# 配置打印 MyBatis 执行的 SQL
+logging:
+  level:
+    com:
+      example:
+        demo: debug
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 1800

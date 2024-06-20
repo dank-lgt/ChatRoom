@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.fachat.mapper.FriendRequestsMapper">
+
+    <insert id="addFriendRequest">
+        insert into friend_requests(senderId,receiverId,reason,request_at)
+        values (#{senderId},#{receiverId},#{reason},now())
+    </insert>
+    <update id="updateReason">
+        update friend_requests set reason = #{reason} where senderId = #{senderId} and receiverId = #{receiverId}
+    </update>
+    <update id="updateAddFriReq">
+        update friend_requests set status = 'accepted' where senderId = #{senderId} and receiverId = #{receiverId}
+    </update>
+    <update id="upRejectFriReq">
+        update friend_requests set status = 'rejected' where senderId = #{senderId} and receiverId = #{receiverId}
+    </update>
+
+
+    <select id="selectRepeatId" resultType="java.lang.Integer">
+        select count(*) from friend_requests where senderId = #{senderId} and receiverId = #{receiverId}
+    </select>
+    <select id="selectFriendRequest" resultType="com.example.fachat.entity.FrRequest">
+        SELECT u.username as username, f.reason as reason,f.status as status
+        FROM friend_requests f
+                 JOIN user u ON f.senderId= u.userId
+        WHERE f.receiverId = #{receiverId} AND f.status = 'pending';
+    </select>
+
+</mapper>

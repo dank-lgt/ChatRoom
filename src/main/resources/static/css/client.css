@@ -1,0 +1,443 @@
+/* 这个文件来放置主界面中的样式 */
+
+.client-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    width: 1000px;
+    height: 740px;
+    background-color: rgb(238, 238, 238);
+    border-radius: 5px;
+
+    display: flex;
+
+    z-index: 2;
+}
+
+.main .left {
+    width: 280px;
+    height: 100%;
+    background-color: rgb(46, 50, 56);
+
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.main .right {
+    width: 720px;
+    height: 100%;
+
+    padding: 0 20px;
+}
+
+.cover {
+    width: 100%;
+    height: 100%;
+
+    background-image: url(../img/view.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    /* 为了让 .cover 和 .main 能够重叠, 给 .cover 加上个定位属性 */
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    /* 设置了下 z 轴坐标 */
+    z-index: 1;
+
+    /* 使用 css 滤镜效果, 让背景图变的朦胧起来 */
+    filter: blur(20px);
+}
+
+.main .left .user {
+    height: 80px;
+    font-size: 20px;
+    line-height: 80px;
+    color: white;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.main .left .user>img {
+    margin: 10px 10px 0 10px;
+    width: 55px;
+    height: 55px;
+}
+
+.main .left .user>span {
+    margin-bottom: 10px;
+}
+
+.main .left .search {
+    height: 40px;
+    padding: 0 20px;
+
+    /* 使用弹性布局, 让里面的元素, 水平方向排列 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.main .left .search input {
+    height: 34px;
+    width: 200px;
+    line-height: 34px;
+    font-size: 14px;
+    color: white;
+    background-color: rgb(38, 41, 46);
+
+    /* 去除边框和轮廓线 */
+    border: none;
+    outline: none;
+    /* 输入框里的文字和左侧边界有个边距 */
+    padding-left: 10px;
+
+    border-radius: 5px;
+}
+
+.main .left .search button {
+    height: 34px;
+    width: 34px;
+    border: none;
+    outline: none;
+
+    background-color: rgb(38, 41, 46);
+
+    border-radius: 5px;
+    background-image: url(../img/搜索.png);
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: center center;
+}
+
+.main .left .search button:active {
+    background-color: grey;
+}
+
+.main .left .tab {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.main .left .tab .tab-session {
+    height: 100%;
+    width: 50%;
+
+    background-image: url(../img/对话.png);
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    background-position: center center;
+}
+
+
+.main .left .tab .tab-friend {
+    height: 100%;
+    width: 50%;
+
+    background-image: url(../img/用户2.png);
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    background-position: center center;
+}
+
+.main .left .list {
+    height: 570px;
+
+    /* 如果里面的内容太多了, 就自动提供一个滚动条 */
+    overflow: auto;
+}
+
+.main .left .list li {
+    height: 60px;
+    padding: 10px 20px;
+    color: white;
+    border-top: 1px solid black;
+    display: flex;
+    align-items: center;
+}
+
+.main .left .list li:hover,
+.main .left .list .selected {
+    background-color: rgb(47 89 147);
+}
+
+/* 这个样式是给会话列表使用的 */
+.main .left .list li h3,
+.main .left .list li p {
+    height: 20px;
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: 10px;
+}
+
+.main .left .list li>img {
+    margin-top: -3px;
+    width: 55px;
+    height: 50px;
+    display: flex;
+    margin-left: 10px;
+}
+
+/* 这个样式是给好友列表使用的 */
+.main .left .list li h4 {
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+}
+
+.main .left .list li h6 {
+    height: 40px;
+    line-height: 40px;
+    font-size: 10px;
+    margin-left: 10px;
+}
+
+.main .left .list li button {
+    display: flex;
+    padding: 8px 10px;
+    margin-right: 10px;
+    margin-left: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.fri_req {
+    display: flex;
+    align-items: center;
+}
+
+.fri_req>div {
+    width: 102px;
+}
+
+.main .left .list li button:hover {
+    background-color: #555;
+}
+
+.main .left .list li h5 {
+    margin: 5px 0;
+    font-size: 13px;
+    color: #666;
+}
+
+
+
+.add {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.reject {
+    background-color: #f44336;
+    color: #fff;
+}
+
+
+
+
+/* 应用了这个 css 类的元素就会被自动隐藏 */
+.hide {
+    display: none;
+}
+
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+    /* display: none; */
+    overflow: hidden;
+}
+
+
+.main .right .title {
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.main .right .message-show {
+    max-height: 550px;/* 设置容器的最大高度，超出部分会出现滚动条 */
+    height: 550px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    /* 内容太多, 自动进行滚动 */
+    overflow-y:hidden; /* 当内容溢出容器时，只在垂直方向上显示滚动条 */
+}
+
+.main .right .message-show:hover {
+    overflow-y: auto; /* 鼠标悬停时显示垂直滚动条 */
+}
+
+/* 隐藏浏览器默认滚动条 */
+.message-show::-webkit-scrollbar {
+    width: 10px; /* 设置滚动条宽度 */
+}
+
+/* 定义滚动条轨道样式 */
+.message-show::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* 滚动条轨道背景色 */
+}
+
+/* 定义滚动条滑块样式 */
+.message-show::-webkit-scrollbar-thumb {
+    background-color: #888; /* 滑块背景色 */
+    border-radius: 5px; /* 滑块圆角 */
+}
+
+/* 当鼠标悬停在滚动条上时的样式 */
+.message-show::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* 鼠标悬停时的滑块背景色 */
+}
+
+.main .right .message-show .message {
+    /* margin-top: 10px; */
+    /* 宽度默认 100%, 高度的话不显式设定, 后续一条消息的内容有多有少 */
+    display: flex;
+}
+
+/* 这个样式让子元素靠左 */
+.main .right .message-show .message-left {
+    justify-content: flex-start;
+}
+
+/* 这个样式让子元素靠右 */
+.main .right .message-show .message-right {
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+
+.main .right .message-show .message .box {
+    /* box 凸显出左右这样的效果, 宽度不能是 100% */
+    width: auto;
+}
+
+.main .right .message-show .message .box h4 {
+    /* 去掉加粗效果 */
+    font-weight: normal;
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+}
+
+.main .right .message-show .message .box p {
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* 给左侧右侧消息设置背景色 */
+.main .right .message-show .message-left .box p {
+    background-color: #fff;
+}
+
+.main .right .message-show .message-right .box p {
+    background-color: rgb(123, 181, 107);
+}
+
+.main .right .message-input {
+    /* 先把 textarea 转成块级元素, 方便设置尺寸啥的 */
+    display: block;
+    width: 100%;
+    height: 100px;
+    border: none;
+    outline: none;
+
+    margin-top: 2px;
+    background-color: rgb(238, 238, 238);
+    padding: 10px;
+    resize: none;
+}
+
+.main .right .ctrl {
+    height: 35px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main .right .ctrl button {
+    height: 35px;
+    width: 100px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.main .right .ctrl button:active {
+    background-color: grey;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    /* 使用flexbox布局 */
+    align-items: center;
+    /* 垂直居中 */
+    justify-content: center;
+    margin-top: 10px;
+}
+
+span {
+    font-weight: bold;
+    margin-right: 10px;
+    text-align: right;
+    width: 75px;
+}
+
+input[type="text"],
+.reason {
+    width: 234px;
+    height: 38px;
+    /* 考虑到边框宽度 */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* 按钮样式 */
+.addFriendBtn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.addFriendBtn:hover {
+    background-color: #0056b3;
+}
+
+#file_input {
+    display: none;
+}
+#loading{
+    border: none;
+    display: flex;
+    justify-content: center; /* 将内容水平居中 */
+    align-items: center; /* 将内容垂直居中 */
+}
+
+/* 加载动画 */
+#loading i{
+    background-image:url(img/消息加载.png);
+}
+
+#loading button{
+    border: none;
+    color: rgb(95, 142, 228);
+    font-size: 12px;
+    cursor: pointer;
+}

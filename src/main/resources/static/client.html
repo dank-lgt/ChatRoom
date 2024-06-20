@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页聊天程序</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/client.css">
+</head>
+
+<body>
+    <!-- 作为遮罩层, 实现背景模糊的效果 -->
+    <div class="cover"></div>
+    <!-- 这个 div 作为整个界面的总的容器 -->
+    <div class="client-container">
+        <!-- 中间的聊天区域 -->
+        <div class="main">
+            <!-- 左侧区域, 显示好友列表和会话列表 -->
+            <div class="left">
+                <!-- 当前登录用户的用户名 -->
+                <div class="user" for="file_input" onclick="triggerFileInput()">
+                    <img src="img/default.png" id="preview_image">
+                </div>
+                <input type="file" id="file_input" accept="image/png,image/jpg,image/jpeg" onclick="uploadImg()">
+                <!-- 这是搜索框 -->
+                <div class="search">
+                    <!-- 点击按钮进行搜索 -->
+                    <button id="search-btn" onclick="friendRequest()"></button>
+                    <!-- 搜索框中的输入框 -->
+                    <input type="text" id="search-msg">
+                </div>
+                <!-- 标签页 -->
+                <div class="tab">
+                    <!-- 会话列表标签 -->
+                    <div class="tab-session"></div>
+                    <!-- 好友列表标签 -->
+                    <div class="tab-friend"></div>
+                </div>
+                <!-- 会话列表 -->
+                <ul class="list" id="session-list">
+                    <!-- <li class="fri_req">
+                        <div>
+                            <h3 class='sender'>wangww</h3>
+                            <h5 class = 'reason'>我想认识一下你</h5>
+                        </div>
+                        <button class="add">同意</button>
+                        <button class="reject">拒绝</button>
+                    </li> -->
+                    <li>
+                        <img src="img/default.png">
+                        <div>
+                            <h3>lisi</h3>
+                            <p>晚上吃啥</p>
+                        </div>
+                    </li>
+                    <li class="selected">
+                        <img src="img/default.png">
+                        <div>
+                            <h3>lisi</h3>
+                            <p>晚上吃啥</p>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>lisi</h3>
+                        <p>晚上吃啥</p>
+                    </li>
+                    <li>
+                        <h3>lisi</h3>
+                        <p>晚上吃啥</p>
+                    </li>
+                    <li>
+                        <h3>lisi</h3>
+                        <p>晚上吃啥</p>
+                    </li>
+                    <li>
+                        <h3>lisi</h3>
+                        <p>晚上吃啥</p>
+                    </li>
+                    <li>
+                        <h3>lisi</h3>
+                        <p>晚上吃啥</p>
+                    </li>
+                    <li>
+                        <h3>lisi</h3>
+                        <p>晚上吃啥</p>
+                    </li>
+                    <li>
+                        <h3>lisi</h3>
+                        <p>晚上吃啥</p>
+                    </li>
+                    <li>
+                        <h3>lisi</h3>
+                        <p>晚上吃啥</p>
+                    </li>
+                </ul>
+                <!-- 好友列表 -->
+                <ul class="list hide" id="friend-list">
+                    <li>
+                        <img src="img/default.png">
+                        <div>
+                            <h3>lisi</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>lisi</h4>
+                    </li>
+                    <li>
+                        <h4>lisi</h4>
+                    </li>
+                    <li>
+                        <h4>lisi</h4>
+                    </li>
+                    <li>
+                        <h4>lisi</h4>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- 右侧区域, 显示聊天编辑框 -->
+            <div class="right">
+                <!-- 会话标题 -->
+                <div class="title"></div>
+                <!-- <div class="form-group" style="display: none;"> -->
+                <!-- <span for="friendName">张三</label>
+                    <textarea id="reason" name="reason" rows="1" placeholder="为什么要添加这个人为好友"></textarea>
+                    <button id="addFriendBtn">添加好友</button> -->
+                <!-- </div>  -->
+                <!-- 消息区 -->
+                <div id="loading" style="display: none;"><i><button>查看更多消息</button></i></div>
+                <div class="message-show">
+                    <!-- <div class="message message-left">
+                        <div class="box">
+                            <h4>lisi</h4>
+                            <p>今天吃啥</p>
+                        </div>
+                    </div>
+                    <div class="message message-right">
+                        <div class="box">
+                            <h4>zhangsan</h4>
+                            <p>随便</p>
+                        </div>
+                    </div>
+                    <div class="message message-left">
+                        <div class="box">
+                            <h4>lisi</h4>
+                            <p>今天吃啥</p>
+                        </div>
+                    </div>
+                    <div class="message message-right">
+                        <div class="box">
+                            <h4>zhangsan</h4>
+                            <p>随便</p>
+                        </div>
+                    </div>
+                    <div class="message message-left">
+                        <div class="box">
+                            <h4>lisi</h4>
+                            <p>今天吃啥</p>
+                        </div>
+                    </div>
+                    <div class="message message-right">
+                        <div class="box">
+                            <h4>zhangsan</h4>
+                            <p>随便</p>
+                        </div>
+                    </div>
+                    <div class="message message-left">
+                        <div class="box">
+                            <h4>lisi</h4>
+                            <p>今天吃啥</p>
+                        </div>
+                    </div>
+                    <div class="message message-right">
+                        <div class="box">
+                            <h4>zhangsan</h4>
+                            <p>随便</p>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- 消息编辑框 -->
+                <textarea class="message-input"></textarea>
+                <!-- 发送按钮 -->
+                <div class="ctrl">
+                    <button>发送</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/client.js"></script>
+</body>
+
+</html>

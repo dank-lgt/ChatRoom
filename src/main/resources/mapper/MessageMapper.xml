@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.fachat.mapper.MessageMapper">
+    <update id="updateMessageStatus">
+        update message set status = 1 where sessionId = #{sessionId}
+    </update>
+    <select id="getLastMessageBySessionId" resultType="java.lang.String">
+        select content from message where sessionId = #{sessionId} order by postTime desc limit 1;
+    </select>
+    <select id="getMessageBySessionId" resultType="com.example.fachat.entity.Message">
+        select m.messageId, m.fromId,u.userName as fromName,m.sessionId, m.content
+        from message as m,user as u
+        where u.userId = m.fromId and m.sessionId = #{sessionId}
+        order by m.posttime desc  limit  #{limit};
+    </select>
+    <select id="MessageUnRead" resultType="java.lang.Integer">
+        select count(*) from message where status = 0 and sessionId = #{sessionId} and fromId = #{fromId}
+    </select>
+
+    <insert id="add">
+        insert into message(messageId,fromId,sessionId,content,postTime) values (null,#{fromId},#{sessionId},#{content},now())
+    </insert>
+</mapper>
